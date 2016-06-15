@@ -1,0 +1,93 @@
+@mixin generalStyles ($fontSize, $fontStyle, $margin, $textAlign) {
+      font-size: $fontSize;
+      font-style: $fontStyle;
+      margin: $margin;
+      text-align: $textAlign;
+}
+@mixin color_class($color) {
+      .#{$color} .color {
+      color: $color;
+        @if $color == red {
+          border: 1px solid blue;
+        }
+      }
+}
+@mixin content($width) {
+    @if $width > 90% {
+    padding: 0px;
+    } @else {
+     padding: 10px;
+      }
+}
+@mixin generalStyles ($color, $fontSize, $fontStyle, $margin, $textAlign) {
+      color: $color;
+      font-size: $fontSize;
+      font-style: $fontStyle;
+      margin: $margin;
+      text-align: $textAlign;
+}
+@media (max-width: 480px) {
+.content {
+  .sidebar {
+    width: 95%;
+    a {
+      display: inline;
+    }
+  }
+}
+
+}
+@mixin images {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid green;
+    @media (max-width: 1200px) {
+        width: 95%;
+    }
+}
+@mixin anchotitulo($widthtitulo) {
+  @if $widthtitulo > 50px {
+    border: 1px solid red;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 3%;
+  }  @else {
+    border: 1px solid green;
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 1%;
+  }
+
+}
+body {
+    background-color: black;
+    @include content(95%);
+}
+img {
+  @include images;
+}
+%part {
+  @include generalStyles(#eee, 25px, auto, 25px, justify);
+}
+.intro {
+
+      h1  {
+        @include generalStyles(#eee, 60px, arabian, 40px, center);
+        @include anchotitulo(45px);
+      }
+      .part1 {
+          @extend %part;
+          > a {
+            color: green;
+          }
+      }
+      .part2 {
+          @extend %part;
+      }
+      .part3 {
+          @extend %part;
+      }
+      .footer {
+          @extend %part;
+      }
+}
